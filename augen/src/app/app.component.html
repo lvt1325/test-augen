@@ -17,9 +17,9 @@
 <div nz-row class="body">
   <div nz-col nzSpan="8" *ngFor="let book of books" class="book">
     <div class="thumbnail">
-      <img [src]="book.volumeInfo.imageLinks.thumbnail">
+      <img [src]="book.volumeInfo.imageLinks.thumbnail" (click)="openBookDetail(book)">
     </div>
-    <div class="title">
+    <div class="title" (click)="openBookDetail(book)">
       {{book.volumeInfo.title}}
     </div>
     <div class="info">

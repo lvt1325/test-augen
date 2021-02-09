@@ -6,6 +6,7 @@
         .book {
             border: 1px solid grey;
             .thumbnail {
+                cursor: pointer;
                 text-align: center;
                 img {
                     width: 150px;
@@ -15,6 +16,7 @@
                 }
             }
             .title {
+                cursor: pointer;
                 line-height: 1.5;
                 height: 3em;
                 overflow: hidden;
