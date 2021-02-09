@@ -1,0 +1,35 @@
+:host {
+    .header {
+
+    }
+    .body {
+        .book {
+            border: 1px solid grey;
+            .thumbnail {
+                text-align: center;
+                img {
+                    width: 150px;
+                    height: 150px;
+                    object-fit: scale-down;
+                    object-position: center;
+                }
+            }
+            .title {
+                line-height: 1.5;
+                height: 3em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: flex;
+                justify-content: center;
+            }
+            .info {
+                line-height: 1;
+                height: 2em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: flex;
+                justify-content: center;
+            } 
+        }
+    }   
+}

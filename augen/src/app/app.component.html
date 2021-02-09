@@ -1,4 +1,34 @@
-<!-- NG-ZORRO -->
-<a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
-  <img height="300" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg">
-</a>
+
+<div nz-row class="header">
+  <div nz-col nzSpan="24">
+    <nz-affix nzOffsetTop="0">
+      <div class="search">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input type="text" nz-input placeholder="input search text" />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <i nz-icon nzType="search"></i>
+        </ng-template>
+      </div>
+    </nz-affix>
+  </div>
+</div>
+
+<div nz-row class="body">
+  <div nz-col nzSpan="8" *ngFor="let book of books" class="book">
+    <div class="thumbnail">
+      <img [src]="book.volumeInfo.imageLinks.thumbnail">
+    </div>
+    <div class="title">
+      {{book.volumeInfo.title}}
+    </div>
+    <div class="info">
+      <div class="author" *ngIf="book?.volumeInfo?.authors?.length">
+        by {{book?.volumeInfo?.authors?.join("|")}}
+      </div>
+      <div class="publishedDate" *ngIf="book.volumeInfo.publishedDate">
+       <span *ngIf="book?.volumeInfo?.authors?.length">&nbsp;</span> in {{book.volumeInfo.publishedDate}}
+      </div>
+    </div>
+  </div>
+</div>
