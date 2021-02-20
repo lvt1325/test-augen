@@ -20,7 +20,7 @@
       <img [src]="book.volumeInfo?.imageLinks?.thumbnail" (click)="openBookDetail(book)">
     </div>
     <div class="title" (click)="openBookDetail(book)">
-      {{book.volumeInfo.title}}
+      <b>{{book.volumeInfo.title}}</b>
     </div>
     <div class="info">
       <div class="author" *ngIf="book?.volumeInfo?.authors?.length">
