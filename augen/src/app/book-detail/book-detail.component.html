@@ -1,2 +1,39 @@
-<p>book-detail works!</p>
-<p>{{book.volumeInfo.title}}</p>
+<div class="book" nz-row>
+    <div class="left" nz-col nzSpan="12">
+        <div class="thumbnail">
+            <img [src]="book.volumeInfo?.imageLinks?.thumbnail">
+        </div>
+        <div>
+            <div class="title">
+                <b>{{book.volumeInfo.title}}</b>
+            </div>
+            <div class="info">
+                <span class="author" *ngIf="book?.volumeInfo?.authors?.length">
+                    by {{book?.volumeInfo?.authors?.join("|")}}
+                </span>
+                <span class="publishedDate" *ngIf="book.volumeInfo?.publishedDate">
+                    <span *ngIf="book?.volumeInfo?.authors?.length">&nbsp;</span> in {{book.volumeInfo?.publishedDate}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="right" nz-col nzSpan="12">
+        {{book.accessInfo | json}}
+    </div>
+</div>
+<div class="shipping">
+    <div>
+        Ship via
+    </div>
+    <div style="text-align: center;">
+        <nz-radio-group [(ngModel)]="selectedDeliveryType" nzButtonStyle="solid">
+            <label *ngFor="let type of deliveryTypes" nz-radio-button [nzValue]="type">
+                {{type.methodName}} {{type.totalCost | currency}}
+            </label>
+        </nz-radio-group>
+    </div>
+</div>
+
+<div class="action">
+    <button class="buy" (click)="onClickBuy(book, selectedDeliveryType)">Buy</button>
+</div>

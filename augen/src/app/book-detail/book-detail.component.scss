@@ -1,0 +1,24 @@
+.book {
+  display: flex;
+  .left {
+    overflow-wrap: anywhere;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    .thumbnail {
+      flex-grow: 1;
+      display: flex;
+      img {
+        border: 1px solid grey;
+        object-fit: contain;
+      }
+    }
+  }
+}
+.action {
+  button {
+    &.buy {
+      width: 100%;
+    }
+  }
+}

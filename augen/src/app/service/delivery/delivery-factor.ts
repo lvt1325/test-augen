@@ -1,5 +1,3 @@
-import { DeliveryMethodNames } from "./delivery-method";
-
 export class DeliveryServiceFactorFactory {
     public static createDeliveryFactor(deliveryMethod: DeliveryMethodNames, month: number = -1): DeliveryServiceFactorInterface {
         let deliveryFactor: DeliveryServiceFactorInterface;
@@ -25,62 +23,62 @@ export class DeliveryServiceFactorFactory {
 }
 
 export interface DeliveryServiceFactorInterface {
-    factor: number;
+    factorRate: number;
     factorName: DeliveryFactorNames;
 }
 
 export class DeliveryServiceFactorOther implements DeliveryServiceFactorInterface {
-    factor: number = 1;
+    factorRate: number = 1;
     factorName: DeliveryFactorNames.Other;
 
     constructor(deliveryMethod: DeliveryMethodNames) {
         switch (deliveryMethod) {
             case DeliveryMethodNames.Air:
-                this.factor = 1;
+                this.factorRate = 1;
                 break;
             case DeliveryMethodNames.Train:
-                this.factor = 1;
+                this.factorRate = 1;
                 break;
             case DeliveryMethodNames.Bike:
-                this.factor = 1;
+                this.factorRate = 1;
                 break;
         }
     }
 }
 
-export class DeliveryServiceFactor68 implements DeliveryServiceFactorInterface{
-    factor: number = 1;
+export class DeliveryServiceFactor68 implements DeliveryServiceFactorInterface {
+    factorRate: number = 1;
     factorName: DeliveryFactorNames.JunToAug;
 
     constructor(deliveryMethod: DeliveryMethodNames) {
         switch (deliveryMethod) {
             case DeliveryMethodNames.Air:
-                this.factor = 0.8;
+                this.factorRate = 0.8;
                 break;
             case DeliveryMethodNames.Train:
-                this.factor = 0.8;
+                this.factorRate = 0.8;
                 break;
             case DeliveryMethodNames.Bike:
-                this.factor = 0.5;
+                this.factorRate = 0.5;
                 break;
         }
     }
 }
 
-export class DeliveryServiceFactor9 implements DeliveryServiceFactorInterface{
-    factor: number = 1;
+export class DeliveryServiceFactor9 implements DeliveryServiceFactorInterface {
+    factorRate: number = 1;
     factorName: DeliveryFactorNames.Sep;
 
     constructor(deliveryMethod: DeliveryMethodNames) {
         switch (deliveryMethod) {
             case DeliveryMethodNames.Air:
-                this.factor = 2;
+                this.factorRate = 2;
                 break;
             case DeliveryMethodNames.Train:
-                this.factor = 1.8;
+                this.factorRate = 1.8;
                 break;
             case DeliveryMethodNames.Bike:
-                this.factor = 1.5;
+                this.factorRate = 1.5;
                 break;
         }
     }
@@ -88,4 +86,8 @@ export class DeliveryServiceFactor9 implements DeliveryServiceFactorInterface{
 
 export enum DeliveryFactorNames {
     JunToAug = "JunToAug", Sep = "Sep", Other = "Other"
+}
+
+export enum DeliveryMethodNames {
+    Bike = "Bike", Train = "Train", Air = "Air"
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../service/book.service';
+import { Book, BookService } from '../service/book.service';
+import { DeliveryMethodNames } from '../service/delivery/delivery-factor';
+import { DeliveryMethodInterface } from '../service/delivery/delivery-method';
+import { DeliveryService } from '../service/delivery/delivery.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -9,9 +12,23 @@ import { Book } from '../service/book.service';
 export class BookDetailComponent implements OnInit {
 
   book: Book;
-  constructor() { }
+  selectedDeliveryType: DeliveryMethodInterface;
+  deliveryTypes : DeliveryMethodInterface[];
 
-  ngOnInit(): void {
+  constructor(private deliveryService: DeliveryService, private bookService: BookService) {
   }
 
+  ngOnInit(): void {
+    this.deliveryTypes = this.deliveryService.getAllAvailableShippingMethods();
+    this.selectedDeliveryType = this.deliveryTypes[0];
+  }
+
+  onClickBuy(book: Book, deliveryType: DeliveryMethodInterface) {
+    let str = `Buying ${book.volumeInfo.title} shipping via ${deliveryType.methodName} with cost ${deliveryType.totalCost}`;
+    alert(str);
+  }
+
+  onClickDeliveryType(type: DeliveryMethodNames) {
+    alert(DeliveryMethodNames[type]);
+  }
 }

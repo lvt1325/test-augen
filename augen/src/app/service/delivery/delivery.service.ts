@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { DeliveryServiceFactorFactory, DeliveryServiceFactorInterface } from './delivery-factor';
-import { DeliveryMethodInterface, DeliveryMethodNames, DeliveryServiceFactory } from './delivery-method';
+import { DeliveryMethodNames } from './delivery-factor';
+import { DeliveryMethodInterface, DeliveryServiceFactory } from './delivery-method';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,16 @@ export class DeliveryService {
 
   constructor() { }
 
-  public requestShipping(methodName: DeliveryMethodNames){
-    return DeliveryServiceFactory.createDeliveryMethod(methodName);
+  public getAllAvailableShippingMethods(monthIndex: number = -1) : DeliveryMethodInterface[] {
+    let shippingMethods : DeliveryMethodInterface[] = [];
+    for (let method in DeliveryMethodNames) {
+      shippingMethods.push(this.requestShipping(DeliveryMethodNames[method], monthIndex));
+    }
+    return shippingMethods;
   }
+
+  public requestShipping(methodName: DeliveryMethodNames, monthIndex: number = -1){
+    return DeliveryServiceFactory.createDeliveryMethod(methodName, monthIndex);
+  }
+
 }

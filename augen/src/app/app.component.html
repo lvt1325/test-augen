@@ -4,10 +4,10 @@
     <nz-affix nzOffsetTop="0">
       <div class="search">
         <nz-input-group [nzSuffix]="suffixIconSearch">
-          <input type="text" nz-input placeholder="input search text" />
+          <input type="text" nz-input placeholder="input search text" [(ngModel)]="textSearch" (keydown.enter)="executeSearch(textSearch)"/>
         </nz-input-group>
         <ng-template #suffixIconSearch>
-          <i nz-icon nzType="search"></i>
+          <i nz-icon nzType="search" (click)="executeSearch(textSearch)"></i>
         </ng-template>
       </div>
     </nz-affix>
@@ -15,9 +15,9 @@
 </div>
 
 <div nz-row class="body">
-  <div nz-col nzSpan="8" *ngFor="let book of books" class="book">
+  <div nz-col nzXs="24" nzSm="12" nzMd="6" nzLg="8" nzXl="4" *ngFor="let book of books" class="book">
     <div class="thumbnail">
-      <img [src]="book.volumeInfo.imageLinks.thumbnail" (click)="openBookDetail(book)">
+      <img [src]="book.volumeInfo?.imageLinks?.thumbnail" (click)="openBookDetail(book)">
     </div>
     <div class="title" (click)="openBookDetail(book)">
       {{book.volumeInfo.title}}
@@ -26,9 +26,12 @@
       <div class="author" *ngIf="book?.volumeInfo?.authors?.length">
         by {{book?.volumeInfo?.authors?.join("|")}}
       </div>
-      <div class="publishedDate" *ngIf="book.volumeInfo.publishedDate">
-       <span *ngIf="book?.volumeInfo?.authors?.length">&nbsp;</span> in {{book.volumeInfo.publishedDate}}
+      <div class="publishedDate" *ngIf="book.volumeInfo?.publishedDate">
+       <span *ngIf="book?.volumeInfo?.authors?.length">&nbsp;</span> in {{book.volumeInfo?.publishedDate}}
       </div>
     </div>
   </div>
+</div>
+<div style="text-align: center;">
+  <button [disabled]="isDisabledLoadMoreButton" (click)="onClickLoadMore()">Load more...</button>
 </div>

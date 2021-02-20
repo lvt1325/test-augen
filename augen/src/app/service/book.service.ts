@@ -9,9 +9,13 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  getBooks() : Observable<BookResponse>{
-    return this.http.get<BookResponse>("https://www.googleapis.com/books/v1/volumes?q=%7bsearch");
+  getBooks(textSearch: string, startIndex: number = 0) : Observable<BookResponse>{
+    return this.http.get<BookResponse>(`https://www.googleapis.com/books/v1/volumes?q=${textSearch}&startIndex=${startIndex}&maxResults=40`);
   }
+
+  getBookById(id: string) : Observable<any> {
+    return this.http.get<any>(`https://www.googleapis.com/books/v1/volumes/${id}`);
+  } 
 }
 
 
@@ -29,6 +33,7 @@ export class Book {
     canonicalVolumeLink: string;
     categories: string[];
     contentVersion: string;
+    description: string;
     imageLinks: {
       smallThumbnail: string;
       thumbnail: string;
