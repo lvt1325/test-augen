@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Book, BookService } from '../service/book.service';
-import { DeliveryMethodNames } from '../service/delivery/delivery-factor';
 import { DeliveryMethodInterface } from '../service/delivery/delivery-method';
 import { DeliveryService } from '../service/delivery/delivery.service';
 
@@ -26,9 +25,5 @@ export class BookDetailComponent implements OnInit {
   onClickBuy(book: Book, deliveryType: DeliveryMethodInterface) {
     let str = `Buying ${book.volumeInfo.title} shipping via ${deliveryType.methodName} with cost ${deliveryType.totalCost}`;
     alert(str);
-  }
-
-  onClickDeliveryType(type: DeliveryMethodNames) {
-    alert(DeliveryMethodNames[type]);
   }
 }

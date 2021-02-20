@@ -38,7 +38,6 @@ export class AppComponent implements OnInit {
   }
 
   executeSearch(text: string) {
-    alert(text);
     this.books = [];
     this.bookService.getBooks(text).subscribe(res => {
       this.books = res.items;
