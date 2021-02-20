@@ -23,7 +23,7 @@ export class DeliveryMethodInterface {
     methodName: DeliveryMethodNames;
     factor: DeliveryServiceFactorInterface;
     get totalCost() {
-        return this.baseCost * this.factor.factorRate;
+        return this.baseCost * 10 * this.factor.factorRate / 10;
     }
 }
 
