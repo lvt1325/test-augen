@@ -10,12 +10,12 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   getBooks(textSearch: string, startIndex: number = 0) : Observable<BookResponse>{
-    return this.http.get<BookResponse>(`https://www.googleapis.com/books/v1/volumes?q=${textSearch}&startIndex=${startIndex}&maxResults=40`);
+    return this.http.get<BookResponse>(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${textSearch}+intitle:${textSearch}&startIndex=${startIndex}&maxResults=40`);
   }
 
   getBookById(id: string) : Observable<any> {
     return this.http.get<any>(`https://www.googleapis.com/books/v1/volumes/${id}`);
-  } 
+  }
 }
 
 

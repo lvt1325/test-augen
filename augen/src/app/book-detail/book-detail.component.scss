@@ -8,6 +8,7 @@
     .thumbnail {
       flex-grow: 1;
       display: flex;
+      justify-content: center;
       img {
         border: 1px solid grey;
         object-fit: contain;
