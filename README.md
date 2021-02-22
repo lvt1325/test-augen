@@ -8,7 +8,8 @@
 # Design Pattern
 In order to easy in maintaining Delivery Service and Factor:
 1. Factory Method
-2. Decorator
+2. Template Method
+3. Decorator
 
 # Breakdown Task (9hrs)
 1. 0.5h Setup Angular project with Ng-Zorro
